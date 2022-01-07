@@ -10,6 +10,7 @@ const processText = () => {
       let sd = Math.round(diceCoefficient(word, afinn_word) * 100) / 100
       let lev = Math.round(levenshteinDistance(word, afinn_word) * 100) / 100
       if (sd > 80 || lev > 80) {
+        word = word.toLowerCase()
         let lev_high = Math.round(((lev - 80)/20) * 100) / 100
         let sd_high = Math.round(((sd - 80)/20) * 100) / 100
         let mf_high = 0
