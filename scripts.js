@@ -3,8 +3,9 @@ const processText = () => {
   let total_lex_score = 0
   let text = document.getElementById("textInput").value
   let wordList = text.split(" ")
-  // console.log(diceCoefficient("anandon", "abandon"))
   wordList.forEach(word => {
+    let orig = word
+    word = word.toLowerCase()
     let found = 0
     for (const afinn_word in afinn) {
       let sd = Math.round(diceCoefficient(word, afinn_word) * 100) / 100
@@ -33,7 +34,6 @@ const processText = () => {
         }
 
         let lex_score = afinn[afinn_word]
-        // console.log(word, afinn_word)
         words.push(`<span class="tool"
         data-tip="Levenshtein: ${lev}
 Sorensen-Dice: ${sd}
@@ -54,7 +54,7 @@ Lexical Score: ${lex_score}"
       }
     }
     if (found == 0) {
-      words.push(word)
+      words.push(orig)
     }
   });
 
